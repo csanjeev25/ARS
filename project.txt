@@ -1,0 +1,94 @@
+create table users(
+ username varchar2(20) primary key,
+ password varchar2(20),
+ role varchar2(10),
+ mobile_no number(10));
+
+insert into users values('Donald','Trump','Admin',7845152418);
+insert into users values('Vladimir','Putin','Executive',5847125693);
+insert into users values('Francis','Francois','Executive',7845953214);
+
+
+
+create table airport(
+  airportname varchar2(50),
+  abbreviation varchar2(5),
+  location varchar2(40));
+
+insert into airport values('Chattrapati Shivaji International Airport','BOM','Mumbai');
+insert into airport values('Indira Gandhi International Airport','DEL','Delhi');
+insert into airport values('Goa International Airport','GOI','Goa');
+insert into airport values('Srinagar International Airport','SXR','Srinagar');
+insert into airport values('Raja Bhoj International Airport','BHO','Bhopal');
+insert into airport values('Chennai International Airport','MAA','Chennai');
+insert into airport values('Rajiv Gandhi International Airport','HYD','Hyderabad');
+insert into airport values('Netaji Subhash Chandra Bose International Airport','CCU','Kolkata');
+
+
+
+
+create table flightinformation(
+  flightno varchar2(10) primary key,
+  airline varchar2(20),
+  dep_city varchar2(10),
+  arr_city varchar2(10),
+  departure_date date,
+  arrival_date date,
+  dep_time number(4,2),
+  arr_time number(4,2),
+  firstseats number(2),
+  firstseatfare number(20,2),
+  bussseats number(2),
+  bussseatsfare number(20,2));
+
+insert into flightinformation values('9W6738','Jet Airways','Mumbai','Delhi',to_date('2016-11-18','yyyy-mm-dd'),to_date('2016-11-18','yyyy-mm-dd'),'15.30','17.35',30,7354,30,15037);
+insert into flightinformation values('7R4322','Jet Airways','Delhi','Mumbai',to_date('2016-11-18','yyyy-mm-dd'),to_date('2016-11-18','yyyy-mm-dd'),'13.30','15.35',30,7354,30,15037);
+insert into flightinformation values('8Y7563','Go Air','Mumbai','Chennai',to_date('2016-11-18','yyyy-mm-dd'),to_date('2016-11-18','yyyy-mm-dd'),'11.30','01.00',30,2300,30,5040);
+insert into flightinformation values('5T8754','Go Air','Chennai','Delhi',to_date('2016-11-18','yyyy-mm-dd'),to_date('2016-11-18','yyyy-mm-dd'),'12.30','02.00',30,9354,30,18037);
+insert into flightinformation values('6I7659','Spice Jet','Kolkata','Delhi',to_date('2016-11-18','yyyy-mm-dd'),to_date('2016-11-18','yyyy-mm-dd'),'12.00','02.00',30,7958,30,15152);
+insert into flightinformation values('5U8769','Spice Jet','Chennai','Kolkata',to_date('2016-11-18','yyyy-mm-dd'),to_date('2016-11-18','yyyy-mm-dd'),'06.20','07.50',60,8971,60,14021);
+insert into flightinformation values('5T8754','Air India','Srinagar','Delhi',to_date('2016-11-18','yyyy-mm-dd'),to_date('2016-11-18','yyyy-mm-dd'),'16.25','18.05',40,4021,30,9251);
+insert into flightinformation values('3P9865','Air India','Hyderabad','Mumbai',to_date('2016-11-18','yyyy-mm-dd'),to_date('2016-11-18','yyyy-mm-dd'),'18.25','20.35',25,3210,25,7450);
+insert into flightinformation values('4G9874,'Air India','Chennai','Delhi',to_date('2016-11-18','yyyy-mm-dd'),to_date('2016-11-18','yyyy-mm-dd'),'15.35','17.05',40,6582,40,14252);
+insert into flightinformation values('2J9875','Go Air','Mumbai','Goa',to_date('2016-11-18','yyyy-mm-dd'),to_date('2016-11-18','yyyy-mm-dd'),'16.05','18.25',70,3654,60,8000);
+insert into flightinformation values('9O7864','Go Air','Chennai','Bhopal',to_date('2016-11-18','yyyy-mm-dd'),to_date('2016-11-18','yyyy-mm-dd'),'12.35','15.15',40,5144,40,11541);
+insert into flightinformation values('6B0985','Air India','Bhopal','Mumbai',to_date('2016-11-18','yyyy-mm-dd'),to_date('2016-11-18','yyyy-mm-dd'),'13.15','14.45',30,4214,30,9874);
+insert into flightinformation values('7M8765','Jet Airways','Kolkata','Mumbai',to_date('2016-11-18','yyyy-mm-dd'),to_date('2016-11-18','yyyy-mm-dd'),'11.05','13.45',30,8475,30,19254);
+
+
+create table bookinginformation(
+  booking_id varchar2(10) primary key,
+  flightno varchar2(20) references flightinformation(flightno),
+  cust_email varchar2(20) references Customer(email),
+  no_of_passengers number,
+  class_type varchar2(10),
+  total_fare number(10,2),
+  seat_number varchar2(10),
+  creditcard_info varchar2(20),
+  dest_city varchar2(10),
+  arr_city varchar2(10));
+
+
+insert into bookinginformation values('AQ543','5T8754','nmodi@gmail.com',1,'business',9251,30,654498462345,'Srinagar','Delhi');
+
+
+
+ create table Customer(
+  title varchar2(4),
+  fname varchar2(10),
+  lname varchar2(10),
+  password varchar2(12),
+  conpassword varchar2(12),
+  email varchar2(30) unique,
+  phoneno number(12),
+  dob date,
+  username varchar2(20));
+
+insert into customer values('Mr','Narendra','Modi','narmodi','narmodi','nmodi@gmail.com',917658954324,to_date('1950-09-17','yyyy-mm-dd'),'nmodi@gmail.com');
+
+
+ 
+
+
+
+
